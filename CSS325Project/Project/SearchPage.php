@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once 'SearchPage/SearchPageFunction.php' ?>
+<?php require_once 'SearchPage/SearchPageFunction.php'; ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="SearchPage/SearchPage.css">
     <title>Searchpage</title>
 </head>
+<body>
     <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
     <div class ="SearchBody" id="SearchBody">
     <div class="MenuSidebar" id="MenuSideBar">

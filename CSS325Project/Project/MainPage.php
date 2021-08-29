@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once 'MainPage/MainPageFunctions.php' ?>
+<?php require_once 'MainPage/MainPageFunctions.php';
+?>
 
 <head>
     <meta charset="UTF-8">

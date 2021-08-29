@@ -1,5 +1,5 @@
 <?php
-
+ session_start();
 require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 $GLOBALS['FilterArrayName'] = array();
@@ -36,6 +36,8 @@ function getItems($conn){
     }
   }
 }
+
+
  
 
 function displayNewItem($result){
@@ -46,7 +48,7 @@ function displayNewItem($result){
             else{
                 echo "<div class='NewItemsTest' id='NewItemsTest'>
                 <img width='256' height='256'>
-                <a href='#'>" . $row['productsName'] . "</a>"
+                <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
                 . $row['productsPrice'] . "
                 </div>";
                 array_push($GLOBALS['shownitems'], $row['productsName']);
