@@ -1,5 +1,4 @@
 <?php
- session_start();
 require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 $GLOBALS['FilterArrayName'] = array();

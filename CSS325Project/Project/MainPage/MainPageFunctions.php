@@ -1,5 +1,4 @@
 <?php
- session_start();
 require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 function getNewItems($conn){
@@ -11,7 +10,7 @@ function getNewItems($conn){
             if($row = mysqli_fetch_assoc($result)){
                 echo "<div class='NewItemsTest' id='NewItemsTest'>
                 <img width='256' height='256'>
-                <a href='#'>" . $row['productsName'] . "</a>"
+                <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . "</a>"
                 . $row['productsPrice'] . "
                 </div>";
                 }

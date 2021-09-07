@@ -33,7 +33,6 @@
                     $sql = "SELECT * FROM  products WHERE productsName='$productname' AND productsDate ='$productdate'";
                     $result = mysqli_query($conn,$sql);
                     $queryResults = mysqli_num_rows($result);
-
                     if($queryResults > 0){
                         while($row = mysqli_fetch_assoc($result)){
                             echo "<div class='ProductMain' id='ProductMain'>
@@ -42,7 +41,7 @@
                             <input class='addCartButton' type='button' name='AddToCart' value='Add to cart'>
                             </div>
                             <div class='ProductDetail' id='ProductDetail'>
-                                Details of product    
+                                ".$row['productsDetail']."  
                             </div>
                             <div class='productPrice' id='productPrice'> ".$row['productsPrice'];"
                             </div>";

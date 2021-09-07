@@ -19,4 +19,16 @@
             }
             ?>
         </div>
+        <div class="MenuSidebar" id="MenuSideBar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="MainPage.php">Home Page</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+        <?php 
+            if(isset($_SESSION['username'])){
+                echo "<a href='AddProductPage.php'> Add product</a>";
+            }
+            ?>
+        </div>  
     </div>

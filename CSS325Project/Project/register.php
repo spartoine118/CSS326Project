@@ -1,5 +1,4 @@
 <?php include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
-session_start();
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
 
     $_SESSION['error'] = array();
@@ -24,7 +23,6 @@ include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
             $result = mysqli_fetch_assoc($work);
 
             if (mysqli_num_rows($work) == 1) {
-                echo "1";
                 $_SESSION['username'] = $username;
                 $_SESSION['success'] = "Your are now logged in";
                 header("location:\CSS325Project\Project\MainPage.php");

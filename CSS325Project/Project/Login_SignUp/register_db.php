@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
     
     $_SESSION['error'] = array();
