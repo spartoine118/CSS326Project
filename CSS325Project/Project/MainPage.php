@@ -39,13 +39,6 @@
             <a class="SeeMorebtn" id="SeeMorebtn" href="#">See more</a>
         </div>
     </div>
-    <div class="MenuSidebar" id="MenuSideBar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-    </div>
 </body>
 <script src="MainPage/MainPage.js"></script>
 

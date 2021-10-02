@@ -6,7 +6,7 @@
             <?php 
             if(isset($_SESSION['username'])){
                 echo "<a href='login.php'>".$_SESSION['username']."</a>
-                <a href='temp.php'> logout </a>
+                <a href='logout.php'> logout </a>
                 <a href='#'>
                     <img alt='UserPicture' width='32' height='32'>
                 </a>>";
@@ -28,6 +28,7 @@
         <?php 
             if(isset($_SESSION['username'])){
                 echo "<a href='AddProductPage.php'> Add product</a>";
+                echo "<a href='CartPage.php'> My Cart</a>";
             }
             ?>
         </div>  

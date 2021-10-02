@@ -5,12 +5,7 @@ $GLOBALS['FilterArrayName'] = array();
 $GLOBALS['shownitems'] = array();
 
 
-function getItems($conn){
-  if(($_POST['ItemSearch'] == "" or trim($_POST['ItemSearch']) == " ") && ($_POST['invisVar1'] == "" or trim($_POST['invisVar1']) == " ")){
-        header("Location: http://localhost/CSS325Project/Project/MainPage.php");
-        exit();
-  }
-  else if(isset($_POST['filterConfirm'])){
+function filterfunction(){
     $search = mysqli_real_escape_string($conn, $_POST['ItemSearch']);
     foreach($GLOBALS['FilterArrayName'] as $filterArrayname2){
         foreach($GLOBALS[$filterArrayname2] as $filter){
@@ -25,6 +20,33 @@ function getItems($conn){
         }
     }
 }
+
+
+function getItems($conn){
+  if(($_POST['ItemSearch'] == "" or trim($_POST['ItemSearch']) == " ") && ($_POST['invisVar1'] == "" or trim($_POST['invisVar1']) == " ") or $_POST['ItemSearch'] == null){
+        header("Location: http://localhost/CSS325Project/Project/MainPage.php");
+        exit();
+  }
+  else if(isset($_POST['filterConfirm'])){
+    $sql ="";
+    $search = mysqli_real_escape_string($conn, $_POST['ItemSearch']);
+    if(empty($_POST['minPrice']) && empty($_POST['maxPrice'])){
+        $sql = "SELECT * FROM products WHERE productsName LIKE '%" . trim($search). "%';";
+    }
+    else if(!empty($_POST['minPrice'])){
+        if(!empty($_POST['maxPrice'])){
+            $sql = "SELECT * FROM `products` WHERE productsName LIKE '%" . trim($search). "%' AND productsPrice >= ".$_POST['minPrice']." AND productsPrice <= ".$_POST['maxPrice'].";";
+        }
+        else{
+            $sql = "SELECT * FROM `products` WHERE productsName LIKE '%" . trim($search). "%' AND productsPrice >= ".$_POST['minPrice'].";";
+        }
+    }
+    else if(!empty($_POST['maxPrice'])){
+            $sql = "SELECT * FROM `products` WHERE productsName LIKE '%" . trim($search). "%' AND productsPrice <= ".$_POST['maxPrice'].";";
+        }
+    $result = mysqli_query($conn, $sql);
+    displayNewItem($result);
+}
   else{
     $search = mysqli_real_escape_string($conn, $_POST['ItemSearch']);
     $sql = "SELECT * FROM products WHERE productsName LIKE '%" . trim($search). "%';";
@@ -32,9 +54,9 @@ function getItems($conn){
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0){
         displayNewItem($result);
+            }
+        }
     }
-  }
-}
 
 
  
@@ -48,7 +70,7 @@ function displayNewItem($result){
                 echo "<div class='NewItemsTest' id='NewItemsTest'>
                 <img width='256' height='256'>
                 <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
-                . $row['productsPrice'] . "
+                . $row['productsPrice'] . "$
                 </div>";
                 array_push($GLOBALS['shownitems'], $row['productsName']);
             }
@@ -57,6 +79,12 @@ function displayNewItem($result){
 }
 
 function createFilterList($conn){
+    echo "<input type='text' name='minPrice' placeholder='min price'>
+    <input type='text' name='maxPrice' placeholder='max price'>
+    ";  
+}
+
+function usedinthecreatefilerlist(){
     $sql = "SELECT column_name FROM information_schema.columns WHERE table_name='products';";
     $result = mysqli_query($conn, $sql);
     $x = 0;

@@ -30,20 +30,27 @@
                 <?php 
                     $productname = mysqli_real_escape_string($conn, $_GET['name']);
                     $productdate = mysqli_real_escape_string($conn, $_GET['date']);
-                    $sql = "SELECT * FROM  products WHERE productsName='$productname' AND productsDate ='$productdate'";
+                    $productID = mysqli_real_escape_string($conn, $_GET['pID']);
+                    $sql = "SELECT * FROM  products WHERE productsName='$productname' AND productsDate ='$productdate' AND productsID ='$productID'";
                     $result = mysqli_query($conn,$sql);
                     $queryResults = mysqli_num_rows($result);
                     if($queryResults > 0){
                         while($row = mysqli_fetch_assoc($result)){
                             echo "<div class='ProductMain' id='ProductMain'>
                             <h2>".$productname."</h2>
-                            <img src='abyd9viyvwf71.png' alt='picture of product'>
-                            <input class='addCartButton' type='button' name='AddToCart' value='Add to cart'>
+                            <img src='images/abyd9viyvwf71.png' alt='picture of product'>
+                            <form action = 'ProductPage\ProductPageFunction.php' method='POST'>
+                                <input class='addCartButton' type='submit' name='AddToCart' value='Add to cart'>
+                                <input type='hidden' name='productID' value='".$productID."'> 
+                                <input type='hidden' name='productdate' value='".$productdate."'>
+                                <input type='hidden' name='productname' value='".$productname."'>  
+                            </form>
                             </div>
                             <div class='ProductDetail' id='ProductDetail'>
                                 ".$row['productsDetail']."  
-                            </div>
-                            <div class='productPrice' id='productPrice'> ".$row['productsPrice'];"
+                            </div>";
+                            include('Ratings/Ratings.php');
+                            echo "<div class='productPrice' id='productPrice'> ".$row['productsPrice']."$
                             </div>";
                         }
                     }

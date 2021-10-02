@@ -10,18 +10,13 @@ function getNewItems($conn){
             if($row = mysqli_fetch_assoc($result)){
                 echo "<div class='NewItemsTest' id='NewItemsTest'>
                 <img width='256' height='256'>
-                <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . "</a>"
-                . $row['productsPrice'] . "
+                <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
+                . $row['productsPrice'] . "$
                 </div>";
                 }
             }
         }
     }
 
-function displayNewItem(){
-    echo "<div class='NewItemsTest' id='NewItemsTest'>
-    <img width='256' height='256'>
-    <a href='#'></a>
-    Price
-    </div>";
-}
+
+
