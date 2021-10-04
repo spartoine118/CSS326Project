@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="AddProductPage/AddProductPage.css">
+    <link rel="stylesheet" href="WriteMessagePage/WriteMessagePage.css">
     <title>CSSProject</title>    
 </head>
 
@@ -15,26 +15,21 @@
 
     <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
     <div class="productInputs">
-
-        <form action ="AddProductPage\AddProductPageFunction.php" method='POST' enctype='multipart/form-data'>
+        <form action ="WriteMessagePage\WriteMessagePageFunction.php" method='POST' enctype='multipart/form-data'>
             <div class = "input">
-                <label for = "productName">Name of product</label>
-                <input type = "text" name="productName" >
+                <label for = "msgTo">To</label>
+                <input type = "text" name="msgTo" >
             </div>
             <div class = "input">
-                <label for = "productsPrice">Price</label>
-                <input type = "text" name="productsPrice">
+                <label for = "msgSubject">Subject</label>
+                <input type = "text" name="msgSubject">
             </div>  
             <div class = "input">
-                <label for = "productsDetail">Details</label>
-                <textarea name="productsDetail" rows="4" cols="50" placeholder="description of item"></textarea>
+                <label for = "msgBody">Details</label>
+                <textarea name="msgBody" rows="4" cols="50" placeholder="Message"></textarea>
             </div>
             <div class = "input">
-                <label for = "productsImage">Upload an Image</label>
-                <input type='file' name='productImage'>Select File</input>
-            </div>
-            <div class = "input">
-                <button type="submit" name = "reg_user" class="btn">Add Item</button>
+                <button type="submit" name = "msg_submit" class="btn">Send message</button>
             </div>
         </form>
         <?php
@@ -49,6 +44,6 @@
         ?>
     </div>
 </body>
-<script src="AddProductPage/AddProductPage.js"></script>
+<script src="WriteMessagePage/WriteMessagePage.js"></script>
 
 </html>

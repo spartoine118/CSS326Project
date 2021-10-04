@@ -8,48 +8,6 @@
   justify-content: space-between;
 }
 
-.ProductBody {
-  margin-top: 10px;
-  background-color: red;
-}
-
-.ProductDisplay {
-  display: grid;
-}
-
-.ProductMain {
-  display: inline-flex;
-  justify-content: space-between;
-}
-
-.ProductMain h2 {
-  justify-content: left;
-}
-
-.ProductMain img {
-  justify-content: center;
-  border: 10px solid black;
-}
-
-.ProductMain input[type="button"] {
-  height: 30px;
-}
-
-.productPrice {
-  text-align: right;
-}
-
-.comments button {
-  width: 400px;
-  height: 80px;
-}
-
-.SearchBar {
-  margin-top: 10px;
-  text-align: center;
-  align-content: center;
-}
-
 .sidebarbtn {
   margin: 5px;
 }
@@ -60,6 +18,12 @@
 
 .username a {
   margin: 5px;
+}
+
+.SearchBar {
+  margin-top: 10px;
+  text-align: center;
+  align-content: center;
 }
 
 .MenuSidebar {
@@ -93,4 +57,37 @@
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+
+.MainBody {
+  height: 80%;
+  display: grid;
+  gap: 50px;
+}
+
+.SearchBar {
+  margin-top: 10px;
+  text-align: center;
+  align-content: center;
+}
+
+.productDisplay {
+  border: black solid 2px;
+  width: 20%;
+  margin: 0% 5% 0% 5%;
+  display: grid;
+  justify-self: center;
+}
+
+.itemDisplay {
+  margin: 5px 5px 5px 5px;
+  padding: 5px;
+  border: red solid 5px;
+  display: grid;
+  text-align: right;
+  gap: 5px;
+}
+
+.itemDisplay img {
+  justify-self: center;
 }

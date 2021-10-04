@@ -8,48 +8,6 @@
   justify-content: space-between;
 }
 
-.ProductBody {
-  margin-top: 10px;
-  background-color: red;
-}
-
-.ProductDisplay {
-  display: grid;
-}
-
-.ProductMain {
-  display: inline-flex;
-  justify-content: space-between;
-}
-
-.ProductMain h2 {
-  justify-content: left;
-}
-
-.ProductMain img {
-  justify-content: center;
-  border: 10px solid black;
-}
-
-.ProductMain input[type="button"] {
-  height: 30px;
-}
-
-.productPrice {
-  text-align: right;
-}
-
-.comments button {
-  width: 400px;
-  height: 80px;
-}
-
-.SearchBar {
-  margin-top: 10px;
-  text-align: center;
-  align-content: center;
-}
-
 .sidebarbtn {
   margin: 5px;
 }
@@ -60,6 +18,12 @@
 
 .username a {
   margin: 5px;
+}
+
+.SearchBar {
+  margin-top: 10px;
+  text-align: center;
+  align-content: center;
 }
 
 .MenuSidebar {
@@ -93,4 +57,32 @@
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+
+.productInputs {
+  text-align: left;
+  margin-left: 35%;
+}
+
+input {
+  margin: 10px;
+  font-size: 15px;
+  padding: 4px 7px;
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}
+
+label {
+  text-align: left;
+  padding-right: 20px;
+  display: inline-block;
+  min-width: 100px;
+}
+
+textarea {
+  resize: none;
+  margin: 10px;
+  font-size: 15px;
+  padding: 4px 7px;
 }

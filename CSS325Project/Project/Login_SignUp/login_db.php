@@ -24,6 +24,7 @@ include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
 
             if (mysqli_num_rows($work) == 1) {
                 $_SESSION['username'] = $username;
+                $_SESSION['userPrivilege'] = $result['userPrivilege'];
                 $_SESSION['success'] = "Your are now logged in";
                 header("location:\CSS325Project\Project\MainPage.php");
             } else {

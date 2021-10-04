@@ -59,7 +59,7 @@
   <div class="feedback">
     <div class="rating">
       <?php 
-      $sql2 = "SELECT AVG(ratingValue) FROM ratings WHERE productID = '".$productID."';";
+      $sql2 = "SELECT AVG(ratingValue), COUNT(*) FROM ratings WHERE productID = '".$productID."';";
       $query2 = mysqli_query($conn, $sql2);
       $result2 = mysqli_fetch_assoc($query2);
       for ($x = 5; $x >= 1; $x-=1){
@@ -76,9 +76,12 @@
       <input type="hidden" name="productID" value="'.$productID.'"> 
       <input type="hidden" name="productdate" value="'.$productdate.'">
       <input type="hidden" name="productname" value="'.$productname.'">  
-      <button type="submit" name = "login_user" class="btn">Rate</button>'
+      <button type="submit" name = "login_user" class="btn">Rate</button>';
       ?>
       </div>
+    <?php 
+    echo "Total Ratings: ".$result2['COUNT(*)'];
+    ?>
     </div>
   </div>
 </div>

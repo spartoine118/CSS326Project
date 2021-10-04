@@ -36,7 +36,7 @@
         <div class="ItemSearchDisplay" id="ItemSearchDisplay">
             <?php 
                 $result = getItems($conn);
-                displayNewItem($result);
+                displayNewItem($result,$conn);
             ?>
             <div class="NewItemsTest" id="NewItemsTest">
                 <img width="256" height="256">

@@ -35,7 +35,7 @@
             $password = md5($password_1);
             echo "1";
 
-            $sql = "INSERT INTO users (username, password) VALUES ('".$username."', '".$password."');";
+            $sql = "INSERT INTO users (username, password, userPrivilege) VALUES ('".$username."', '".$password."', 'User');";
             mysqli_query($conn, $sql);
 
             $_SESSION['username'] = $username;

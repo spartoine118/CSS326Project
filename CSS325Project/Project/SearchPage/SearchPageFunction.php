@@ -14,7 +14,7 @@ function filterfunction(){
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 if($resultCheck > 0){
-                    displayNewItem($result);
+                    displayNewItem($result,$conn);
                 }
             }
         }
@@ -45,7 +45,7 @@ function getItems($conn){
             $sql = "SELECT * FROM `products` WHERE productsName LIKE '%" . trim($search). "%' AND productsPrice <= ".$_POST['maxPrice'].";";
         }
     $result = mysqli_query($conn, $sql);
-    displayNewItem($result);
+    displayNewItem($result,$conn);
 }
   else{
     $search = mysqli_real_escape_string($conn, $_POST['ItemSearch']);
@@ -53,7 +53,7 @@ function getItems($conn){
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0){
-        displayNewItem($result);
+        displayNewItem($result,$conn);
             }
         }
     }
@@ -61,18 +61,41 @@ function getItems($conn){
 
  
 
-function displayNewItem($result){
+function displayNewItem($result,$conn){
     if($result != null){
         while($row = mysqli_fetch_assoc($result)){
             if(in_array($row['productsName'], $GLOBALS['shownitems'])){
             }
             else{
-                echo "<div class='NewItemsTest' id='NewItemsTest'>
-                <img width='256' height='256'>
-                <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
-                . $row['productsPrice'] . "$
-                </div>";
+                $sql2 = "SELECT * FROM  productimage WHERE productName='".$row['productsName']."' AND productID ='".$row['productsID']."'";
+                $result2 = mysqli_query($conn,$sql2);
+                $queryResults2 = mysqli_num_rows($result2);
+                if($queryResults2 > 0){
+                    while($row2 = mysqli_fetch_assoc($result2)){
+                        if($row2['status'] == 1){
+                            echo "<div class='NewItemsTest' id='NewItemsTest'>
+                            <img src='AddProductPage/Uploads/ProductsImage/".$row2['productName']."_".$row2['productID'].".".$row2['fileEXT']."' alt='picture of product' width='256' height='256'>
+                            <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
+                            . $row['productsPrice'] . "$
+                            </div>";
+                        }
+                        else{
+                            echo "<div class='NewItemsTest' id='NewItemsTest'>
+                            <img src='images/abyd9viyvwf71.png' width='256' height='256'>
+                            <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
+                            . $row['productsPrice'] . "$
+                            </div>";
+                        }
+                    } 
+                } 
+                else{
+                    echo "<div class='NewItemsTest' id='NewItemsTest'>
+                    <img src='images/abyd9viyvwf71.png' width='256' height='256'>
+                    <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
+                    . $row['productsPrice'] . "$
+                    </div>";
                 array_push($GLOBALS['shownitems'], $row['productsName']);
+                }
             }
         }
     }
