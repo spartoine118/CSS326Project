@@ -73,3 +73,77 @@ if (isset($_POST['reg_user'])) {
             header("location:\CSS325Project\Project\AddProductPage.php");
         }
     }
+
+
+if (isset($_POST['ModifyItem2'])) {
+    $productsName = mysqli_real_escape_string($conn, $_POST['productName']);
+    $productsPrice = mysqli_real_escape_string($conn, $_POST['productsPrice']);
+    $productsDetail = mysqli_real_escape_string($conn, $_POST['productsDetail']);
+    $productsDate = date('Y-m-d');
+        if (empty($productsName)) {
+            array_push($_SESSION['error'], "Product name is empty");
+        }       
+        if (empty($productsPrice)) {
+            array_push($_SESSION['error'], "Price is required");
+        }
+        if (count($_SESSION['error']) == 0){
+            $sql = "UPDATE products SET productsName = '".$productsName."', productsPrice = '".$productsPrice."', productsDetail = '".$productsDetail."' WHERE `products`.`productsID` = ".$_POST['productID'].";";
+            mysqli_query($conn, $sql);
+            $file = $_FILES['productImage'];
+            $file_name = $file['name'];
+            $fileTmpname = $file['tmp_name'];
+            $fileSize = $file['size'];
+            $fileError = $file['error'];
+            $fileType = $file['type'];
+
+            $file_Ext = explode('.',$file_name);
+            $fileActualExt = strtolower(end($file_Ext));
+            $allowed = array('jpg','jpeg','png');
+            if(in_array($fileActualExt, $allowed)){
+                if($fileError === 0){
+                    if($fileSize < 10000000){
+                        $fileNameNew = $productsName."_".$_POST['productID'].".".$fileActualExt;
+                        $newFileDestination = 'Uploads/ProductsImage/'.$fileNameNew;
+                        if(isset($_POST['productPicture'])){
+                            $fileDestination = 'Uploads/ProductsImage/'.$_POST['productPicture'];
+                            unlink($fileDestination);
+                            move_uploaded_file($fileTmpname, $newFileDestination);
+                            $sql3 = "UPDATE productimage SET productName = '".$productsName."', productID = '".$_POST['productID']."', status = '1', fileEXT= '".$fileActualExt."' WHERE productID = ".$_POST['productID'].";";
+                            mysqli_query($conn, $sql3);
+                            $header = "location:\CSS325Project\Project\ProductPage.php?name=" .$productsName. "&date=" .$_POST['productDate']."&pID=".$_POST['productID'];   
+                            header($header);
+                        }
+                        else{
+                            $fileNameNew = $productsName."_".$_POST['productID'].".".$fileActualExt;
+                            $fileDestination = 'Uploads/ProductsImage/'.$fileNameNew;
+                            move_uploaded_file($fileTmpname, $fileDestination);
+                            $sql3 = "UPDATE productimage SET productName = '".$productsName."', productID = '".$_POST['productID']."', status = '1', fileEXT= '".$fileActualExt."' WHERE productID = ".$_POST['productID'].";";
+                            mysqli_query($conn, $sql3);
+                            $header = "location:\CSS325Project\Project\ProductPage.php?name=" .$productsName. "&date=" .$_POST['productDate']."&pID=".$_POST['productID'];   
+                            header($header);
+                        }
+                    }
+                    else{
+                        $sql3 = "UPDATE productimage SET productName = '".$productsName."', productID = '".$_POST['productID']."', status = '0', fileEXT= '".$fileActualExt."' WHERE productID = ".$_POST['productID'].";";
+                        mysqli_query($conn, $sql3);
+                        echo "Your file is too big!";
+                    }
+                }
+                else{
+                    $sql3 = "UPDATE productimage SET productName = '".$productsName."', productID = '".$_POST['productID']."', status = '0', fileEXT= '".$fileActualExt."' WHERE productID = ".$_POST['productID'].";";
+                    mysqli_query($conn, $sql3);
+                    echo "There was an error uploading your file!";
+                }
+            }
+            else{
+                $sql3 = "UPDATE productimage SET productName = '".$productsName."', productID = '".$_POST['productID']."', status = '0', fileEXT= '".$fileActualExt."' WHERE productID = ".$_POST['productID'].";";
+                mysqli_query($conn, $sql3);
+                echo "You cannot upload files of this type!";
+            $header = "location:\CSS325Project\Project\ProductPage.php?name=" .$productsName. "&date=" .$_POST['productDate']."&pID=".$_POST['productID'];   
+            header($header);
+        }
+    }
+    else{
+        header("location:\CSS325Project\Project\AddProductPage.php");
+    }
+}

@@ -17,11 +17,11 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     </div>
     <div class="MainBody" id="MainBody">
-        <div class="SearchBar" id="SearchBar">
-            <form action="SearchPage.php" method="POST">
-                <input name="SearchSubmit" type="image" alt="Submit">
+    <div class="SearchBar" id="SearchBar">
+            <form action="SearchPage.php" method="GET">
+                <input name="SearchSubmit" type="submit" value="search">
                 <input type="text" id="ItemSearch" name="ItemSearch">
-                
+                <input type="hidden" id="page" name="page" value="1">
             </form>
         </div>
         <div class="cartDisplay" id="cartDisplay">

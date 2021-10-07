@@ -14,6 +14,19 @@ function getUserItems($conn){
                 while($row3 = mysqli_fetch_assoc($result3)){
                     if($row3['status'] == 1){
                         echo "<div class='itemDisplay' id='itemDisplay'>
+                        <form action ='MyproductPage/MyproductPageFunction.php' method='POST'>
+                            <input class='deleteItem' type='submit' name='deleteItem' value='Remove this Item'>
+                            <input type='hidden' name='productID' value='".$row['productsID']."'> 
+                        </form> 
+                        <form action ='AddproductPage.php' method='POST'>
+                        <input class='deleteItem' type='submit' name='ModifyItem' value='Modify this Item'>
+                        <input type='hidden' name='productID' value='".$row['productsID']."'>
+                        <input type='hidden' name='productDate' value='".$row['productsDate']."'> 
+                        <input type='hidden' name='productPicture' value='".$row3['productName']."_".$row3['productID'].".".$row3['fileEXT']."'>
+                        <input type='hidden' name='productName' value='".$row['productsName']."'> 
+                        <input type='hidden' name='productPrice' value='".$row['productsPrice']."'> 
+                        <input type='hidden' name='productDetail' value='".$row['productsDetail']."'> 
+                    </form> 
                         <img src='AddProductPage/Uploads/ProductsImage/".$row3['productName']."_".$row3['productID'].".".$row3['fileEXT']."' alt='picture of product' width='256' height='256'>
                         <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
                         . $row['productsPrice'] . "$ </br>
@@ -21,6 +34,18 @@ function getUserItems($conn){
                     }
                     else{
                         echo "<div class='itemDisplay' id='itemDisplay'>
+                        <form action ='MyproductPage/MyproductPageFunction.php' method='POST'>
+                            <input class='deleteItem' type='submit' name='deleteItem' value='Remove this Item'>
+                            <input type='hidden' name='productID' value='".$row['productsID']."'> 
+                        </form>
+                        <form action ='AddproductPage.php' method='POST'>
+                            <input class='deleteItem' type='submit' name='ModifyItem' value='Modify this Item'>
+                            <input type='hidden' name='productID' value='".$row['productsID']."'>
+                            <input type='hidden' name='productDate' value='".$row['productsDate']."'> 
+                            <input type='hidden' name='productName' value='".$row['productsName']."'> 
+                            <input type='hidden' name='productPrice' value='".$row['productsPrice']."'> 
+                            <input type='hidden' name='productDetail' value='".$row['productsDetail']."'> 
+                        </form> 
                         <img src='images/abyd9viyvwf71.png' width='256' height='256'>
                         <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
                         . $row['productsPrice'] . "$ </br>
@@ -30,9 +55,21 @@ function getUserItems($conn){
             }
             else{
                 echo "<div class='itemDisplay' id='itemDisplay'>
+                    <form action ='MyproductPage.php' method='POST'>
+                            <input class='deleteItem' type='submit' name='deleteItem' value='Remove this Item'>
+                            <input type='hidden' name='productID' value='".$row['productsID']."'> 
+                        </form> 
+                    <form action ='AddproductPage.php' method='POST'>
+                        <input class='deleteItem' type='submit' name='ModifyItem' value='Modify this Item'>
+                        <input type='hidden' name='productID' value='".$row['productsID']."'> 
+                        <input type='hidden' name='productDate' value='".$row['productsDate']."'> 
+                        <input type='hidden' name='productName' value='".$row['productsName']."'> 
+                        <input type='hidden' name='productPrice' value='".$row['productsPrice']."'> 
+                        <input type='hidden' name='productDetail' value='".$row['productsDetail']."'> 
+                    </form> 
                 <img src='images/abyd9viyvwf71.png' width='256' height='256'>
                 <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>
-                </div>";
+                </div>";    
             } 
             }
         }
@@ -49,4 +86,22 @@ function getTotalPrice($conn){
             echo "$";
         }
     }
+}
+
+function removeItem($conn,$productid){
+    $sql = "DELETE FROM products WHERE userName = '".$_SESSION['username']."' AND productsID = ".$productid.";";
+    $sql1 = "DELETE FROM cart WHERE productID = ".$productid.";";
+    $sql2 = "DELETE FROM comments WHERE productID = ".$productid.";";
+    $sql3 = "DELETE FROM productimage WHERE productID = ".$productid.";";
+    $sql4 = "DELETE FROM ratings WHERE productID = ".$productid.";";
+    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql1);
+    $result = mysqli_query($conn, $sql2);
+    $result = mysqli_query($conn, $sql3);
+    $result = mysqli_query($conn, $sql4);
+}
+
+if(isset($_POST['deleteItem'])){
+    removeItem($conn,$_POST['productID']);
+    header("Location: http://localhost/CSS325Project/Project/MyproductPage.php");
 }

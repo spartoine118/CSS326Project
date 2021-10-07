@@ -37,12 +37,12 @@
         <a href="#">Contact</a>
     </div>
     <div class="SearchBar" id="SearchBar">
-        <form action="SearchPage.php" method="PO    ST">
-            <input name="SearchSubmit" type="image" alt="Submit">
-            <input type="text" id="ItemSearch" name="ItemSearch">
-                
-        </form>
-    </div>
+            <form action="SearchPage.php" method="GET">
+                <input name="SearchSubmit" type="submit" value="search">
+                <input type="texts" id="ItemSearch" name="ItemSearch">
+                <input type="hidden" id="page" name="page" value="1">
+            </form>
+        </div>
     <?php
     $productID = mysqli_real_escape_string($conn, $_GET['pID']);
     if(isset($_SESSION['userPrivilege']) AND $_SESSION['userPrivilege'] == 'Admin'){
@@ -102,7 +102,8 @@
                     echo " <div class='commentbox' id='commentbox'>
                     <form method='POST' action='".setComment($conn)."'>
                         <input type='hidden' name='username' value='".$_SESSION['username']."'>
-                        <input type='hidden' name='productname' value='".$productname."'> 
+                        <input type='hidden' name='productname' value='".$productname."'>
+                        <input type='hidden' name='productID' value='".$productID."'>  
                         <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'> 
                         <textarea name='comment'></textarea></br>
                         <button style='margin: 0px 5px 5px 5px;'

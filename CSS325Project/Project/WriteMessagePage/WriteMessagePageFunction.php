@@ -19,4 +19,7 @@ if(isset($_POST['msg_submit'])){
         mysqli_query($conn, $sql);
         header("location:\CSS325Project\Project\MainPage.php");
     }
+    else{
+        header("location: http://localhost/CSS325Project/Project/WriteMessage.php");
+    }
 }

@@ -13,8 +13,8 @@ function setComment($conn){
         $productname = $_POST['productname'];
         $date = $_POST['date'];
         $comment = $_POST['comment'];
-
-        $sql = "INSERT INTO comments (userName, productName, date, comment) VALUES ('$username', '$productname', '$date', '$comment');";
+        $productID = $_POST['productID'];
+        $sql = "INSERT INTO comments (userName, productName, date, comment, productID) VALUES ('$username', '$productname', '$date', '$comment',$productID);";
         $result = mysqli_query($conn,$sql);  
     }
 }

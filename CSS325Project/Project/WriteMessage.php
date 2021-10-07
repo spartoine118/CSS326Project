@@ -18,11 +18,11 @@
         <form action ="WriteMessagePage\WriteMessagePageFunction.php" method='POST' enctype='multipart/form-data'>
             <div class = "input">
                 <label for = "msgTo">To</label>
-                <input type = "text" name="msgTo" >
+                <input type = "text" name="msgTo" value="<?php if(isset($_POST['replyMail'])){echo $_POST['messageSender'];}?>">
             </div>
             <div class = "input">
                 <label for = "msgSubject">Subject</label>
-                <input type = "text" name="msgSubject">
+                <input type = "text" name="msgSubject" value="<?php if(isset($_POST['replyMail'])){echo $_POST['messageSubject'];}?>">
             </div>  
             <div class = "input">
                 <label for = "msgBody">Details</label>

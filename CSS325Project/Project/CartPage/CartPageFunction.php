@@ -19,6 +19,10 @@ function getCartItems($conn){
                         while($row3 = mysqli_fetch_assoc($result3)){
                             if($row3['status'] == 1){
                                 echo "<div class='itemDisplay' id='itemDisplay'>
+                                <form action = 'CartPage/CartPageFunction.php' method='POST'>
+                                    <input class='deleteItem' type='submit' name='deleteItem' value='Remove this Item'>
+                                    <input type='hidden' name='productID' value='".$row2['productsID']."'> 
+                                </form> 
                                 <img src='AddProductPage/Uploads/ProductsImage/".$row3['productName']."_".$row3['productID'].".".$row3['fileEXT']."' alt='picture of product' width='256' height='256'>
                                 <a href='ProductPage.php?name=".$row2['productsName']."&date=".$row2['productsDate']. "&pID=".$row2['productsID']."'>" . $row2['productsName'] . " </a>"
                                 . $row2['productsPrice'] . "$ </br>
@@ -27,6 +31,10 @@ function getCartItems($conn){
                             }
                             else{
                                 echo "<div class='itemDisplay' id='itemDisplay'>
+                                <form action = 'CartPage/CartPageFunction.php' method='POST'>
+                                    <input class='deleteItem' type='submit' name='deleteItem' value='Remove this Item'>
+                                    <input type='hidden' name='productID' value='".$row2['productsID']."'> 
+                                </form> 
                                 <img src='images/abyd9viyvwf71.png' width='256' height='256'>
                                 <a href='ProductPage.php?name=".$row2['productsName']."&date=".$row2['productsDate']. "&pID=".$row2['productsID']."'>" . $row2['productsName'] . " </a>"
                                 . $row2['productsPrice'] . "$ </br>
@@ -37,6 +45,10 @@ function getCartItems($conn){
                     }
                     else{
                         echo "<div class='itemDisplay' id='itemDisplay'>
+                        <form action ='CartPage/CartPageFunction.php' method='POST'>
+                            <input class='deleteItem' type='submit' name='deleteItem' value='Remove this Item'>
+                            <input type='hidden' name='productID' value='".$row2['productsID']."'> 
+                        </form> 
                         <img src='images/abyd9viyvwf71.png' width='256' height='256'>
                         <a href='ProductPage.php?name=".$row2['productsName']."&date=".$row2['productsDate']. "&pID=".$row2['productsID']."'>" . $row2['productsName'] . " </a>"
                         . $row2['productsPrice'] . "$ </br>
@@ -49,8 +61,16 @@ function getCartItems($conn){
     }
 }
 
+function removeItem($conn,$productid){
+    $sql = "DELETE FROM cart WHERE Username = '".$_SESSION['username']."' AND productID = ".$productid." LIMIT 1;";
+    echo $sql;
+    $result = mysqli_query($conn, $sql);
+}
+
+
+
 function getTotalPrice($conn){
-    $sql = "SELECT SUM(p.productsPrice) FROM cart c,products p WHERE c.Username = '".$_SESSION['username']."' AND c.Productname = p.productsName;";
+    $sql = "SELECT SUM(p.productsPrice) FROM cart c,products p WHERE c.Username = '".$_SESSION['username']."' AND c.Productname = p.productsName AND p.productsID = c.ProductID;";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0){
@@ -65,4 +85,9 @@ function getTotalPrice($conn){
             }
         }
     }
+}
+
+if(isset($_POST['deleteItem'])){
+    removeItem($conn,$_POST['productID']);
+    header("location: http://localhost/CSS325Project/Project/CartPage.php");
 }

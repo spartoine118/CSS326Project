@@ -15,28 +15,20 @@
     <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
     <div class="MainBody" id="MainBody">
         <div class="SearchBar" id="SearchBar">
-            <form action="SearchPage.php" method="POST">
-                <input name="SearchSubmit" type="image" alt="Submit">
+            <form action="SearchPage.php" method="GET">
+                <input name="SearchSubmit" type="submit" value="search">
                 <input type="text" id="ItemSearch" name="ItemSearch">
+                <input type="hidden" id="page" name="page" value="1">
                 
             </form>
         </div>
         <div class="NewItems" id="NewItems">
             <?php getNewItems($conn); ?>
-            <a class="SeeMorebtn" id="SeeMorebtn" href="#">See more</a>
+            <a class="SeeMorebtn" id="SeeMorebtn" href="SearchPage.php">See more</a>
         </div>
         <div class="PopularItems" id="PopularItems">
-            <div class="NewItemsTest" id="NewItemsTest">
-                <img width="256" height="256">
-                <a href="#">ProductName</a>
-                Price
-            </div>
-            <div class="NewItemsTest" id="NewItemsTest">
-                <img width="256" height="256">
-                <a href="#">ProductName</a>
-                Price
-            </div>
-            <a class="SeeMorebtn" id="SeeMorebtn" href="#">See more</a>
+            <?php getPopularItems($conn) ?>
+            <a class="SeeMorebtn" id="SeeMorebtn" href="SearchPage.php">See more</a>
         </div>
     </div>
 </body>
