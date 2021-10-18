@@ -71,7 +71,7 @@
                             if($queryResults2 > 0){
                                 while($row2 = mysqli_fetch_assoc($result2)){
                                     if($row2['status'] == 1){
-                                        echo "<img src='AddProductPage/Uploads/ProductsImage/".$row2['productName']."_".$row2['productID'].".".$row2['fileEXT']."' alt='picture of product'>";
+                                        echo "<img src='AddProductPage/Uploads/ProductsImage/".$row2['productID'].".".$row2['fileEXT']."' alt='picture of product'>";
                                     }
                                     else{
                                         echo "<img src='images/abyd9viyvwf71.png'>";
@@ -112,7 +112,7 @@
                 </div>";
                 }
                 ?>
-            </div>
+            </div>  
             <?php 
             getComment($conn,$productname);
             ?>

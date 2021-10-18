@@ -81,7 +81,7 @@ function displayNewItem($result,$conn){
                     while($row2 = mysqli_fetch_assoc($result2)){
                         if($row2['status'] == 1){
                             echo "<div class='NewItemsTest' id='NewItemsTest'>
-                            <img src='AddProductPage/Uploads/ProductsImage/".$row2['productName']."_".$row2['productID'].".".$row2['fileEXT']."' alt='picture of product' width='256' height='256'>
+                            <img src='AddProductPage/Uploads/ProductsImage/".$row2['productID'].".".$row2['fileEXT']."' alt='picture of product' width='256' height='256'>
                             <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
                             . $row['productsPrice'] . "$
                             </div>";

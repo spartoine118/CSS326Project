@@ -14,7 +14,7 @@ function getUserItems($conn){
                 while($row3 = mysqli_fetch_assoc($result3)){
                     if($row3['status'] == 1){
                         echo "<div class='itemDisplay' id='itemDisplay'>
-                        <img src='AddProductPage/Uploads/ProductsImage/".$row3['productName']."_".$row3['productID'].".".$row3['fileEXT']."' alt='picture of product' width='256' height='256'>
+                        <img src='AddProductPage/Uploads/ProductsImage/".$row3['productID'].".".$row3['fileEXT']."' alt='picture of product' width='256' height='256'>
                         <a href='ProductPage.php?name=".$row['productsName']."&date=".$row['productsDate']. "&pID=".$row['productsID']."'>" . $row['productsName'] . " </a>"
                         . $row['productsPrice'] . "$ </br>
                         </div>";

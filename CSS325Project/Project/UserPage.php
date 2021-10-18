@@ -25,10 +25,19 @@
             ?>
             <div class="dot"></div>
         </nav>
+        <?php $sql = "SELECT * FROM users WHERE userNAME = '".$_GET['uname']."';";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $sql2 = "SELECT * FROM userimage WHERE userNAME = '".$_GET['uname']."';";
+                $result2 = mysqli_query($conn,$sql2);
+                $row2 = mysqli_fetch_assoc($result2);?>
             <h2>Profile</h2>    
                     <div class = "content">
                         <!--  user information -->
                         <p> Username:<strong><?php echo $_GET['uname']; ?></strong></p>
+                        <p> First name:<strong><?php echo $row['firstName']; ?></strong></p>
+                        <p> Last name:<strong><?php echo  $row['lastName']; ?></strong></p>
+                        <p> Profile picture:<strong><?php echo "<img src='Login_SignUp/Uploads/UserImage/".$row2['userID'].".".$row2['fileEXT']."' alt='UserPicture' width='128' height='128'></strong></p>" ?>
                         
                     </div>
          </div>
