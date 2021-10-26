@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        margin: 0%;
+        background-color: white;
+    }
+    
+    .header {
+        height: 20%;
+        min-height: fit-content;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .username {
+        margin: 5px;
+    }
+    
+    .username a {
+        margin: 5px;
+    }
+    
+    .MainBody {
+        height: 80%;
+        display: grid;
+        gap: 50px;
+    }
+    
+    .SearchBar {
+        margin-top: 40px;
+        text-align: center;
+        align-content: center;
+    }
+    
+    .NewItems {
+        margin: 0% 5% 0% 5%;
+        display: inline-flex;
+        justify-content: flex-start;
+        background-color: white;
+        border-radius: 20px;
+        -webkit-box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+        box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+    }
+    
+    .PopularItems {
+        margin: 0% 5% 0% 5%;
+        display: inline-flex;
+        justify-content: flex-start;
+        background-color: white;
+        border-radius: 20px;
+        -webkit-box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+        box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+    }
+    
+    .SeeMorebtn {
+        padding-top: 18%;
+        margin-left: 5px;
+    }
+    
+    .NewItemsTest {
+        margin: 15px 15px 15px 15px;
+        padding: 5px;
+        display: grid;
+        text-align: right;
+        gap: 5px;
+        background-color: #F6F6F6;
+        border-radius: 20px;
+        -webkit-box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+        box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+    }
+    
+    .NewItemsTest a {
+        text-align: left;
+    }
+    
+    .MenuSidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: black;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+    
+    .MenuSidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        color: #7289da;
+        display: block;
+        transition: 0.3s;
+    }
+    
+    .MenuSidebar a:hover {
+        color: #f1f1f1;
+    }
+    
+    .MenuSidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        margin-top: 1.2%;
+        margin-left: 50px;
+        font-size: 25px;
+        color: #7289da;
+    }
+    
+    .MenuSidebar b {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        color: #7289da;
+        display: block;
+        transition: 0.3s;
+    }
+    
+    .MenuSidebar b:hover {
+        color: red;
+    }
+    
+    input[type="text"] {
+        border-radius: 100px;
+        cursor: text;
+        /*font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;*/
+        font-size: 16px;
+        max-width: 480px;
+        min-height: 40px;
+        min-width: 0px;
+        padding: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        -webkit-box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+        box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
+    }
+    
+    input[type="submit"] {
+        align-items: center;
+        background-color: #F6F6F6;
+        border: 0;
+        border-radius: 100px;
+        box-sizing: border-box;
+        color: #7289da;
+        cursor: pointer;
+        display: inline-flex;
+        /*font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;*/
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 20px;
+        max-width: 480px;
+        min-height: 40px;
+        min-width: 0px;
+        overflow: hidden;
+        padding: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        touch-action: manipulation;
+        transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_MainPage.css">
+    <title>MainPage</title>
+</head>
+
+<body>
+    <div class="header" id="header">
+        <div class="sidebarbtn" id="sidebarbtn">
+            <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+        </div>
+        <div class="username" id="username">
+            <a href="#">Sign in</a>
+            <a href="#">
+                <img alt="UserPicture" width="32" height="32">
+            </a>
+        </div>
+    </div>
+    <div class="MainBody" id="MainBody">
+        <div class="SearchBar" id="SearchBar">
+            <form action="SearchPage.php" method="POST">
+                <input name="SearchSubmit" type="image" alt="Submit">
+                <input type="text" id="ItemSearch" name="ItemSearch"><br><br>
+            </form>
+        </div>
+        <div class="NewItems" id="NewItems">
+            <div class="NewItemsTest" id="NewItemsTest">
+                <img width="256" height="256">
+                <a href="#">ProductName</a> Price
+            </div>
+            <div class="NewItemsTest" id="NewItemsTest">
+                <img width="256" height="256">
+                <a href="#">ProductName</a> Price
+            </div>
+            <a class="SeeMorebtn" id="SeeMorebtn" href="#">See more</a>
+        </div>
+        <div class="PopularItems" id="PopularItems">
+            <div class="NewItemsTest" id="NewItemsTest">
+                <img width="256" height="256">
+                <a href="#">ProductName</a> Price
+            </div>
+            <div class="NewItemsTest" id="NewItemsTest">
+                <img width="256" height="256">
+                <a href="#">ProductName</a>Price
+            </div>
+            <a class="SeeMorebtn" id="SeeMorebtn" href="#">See more</a>
+        </div>
+    </div>
+    <div class="MenuSidebar" id="MenuSideBar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+</body>
+<script src="MainPage.js"></script>
+
+</html>
