@@ -1,13 +1,19 @@
 <?php
 
-include('C:\xampp\htdocs\CSS325Project\Project\dbh.php');
+include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
 
 
 if(isset($_POST['msg_submit'])){
 
     if (empty($_POST['msgTo'])) {
         array_push($_SESSION['error'], "Insert a receiver");
-    }       
+    }
+    $sql2 = "SELECT * FROM users WHERE username = '".$_POST['msgTo']."';";
+    $result2 = mysqli_query($conn, $sql2);
+    $queryResults2 = mysqli_num_rows($result2);
+    if($queryResults2 < 1 && !empty($_POST['msgTo'])){
+        array_push($_SESSION['error'], "This receiver does not exist");
+    }
     if (empty($_POST['msgSubject'])) {
         array_push($_SESSION['error'], "Write a subject for this message");
     }

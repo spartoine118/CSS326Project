@@ -28,7 +28,7 @@
 </style>
 </head>
 <body>
-    <?php include_once 'C:\xampp\htdocs\CSS325Project\Project\Header.php'; ?>
+    <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
     <div class="MenuSidebar" id="MenuSideBar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a href="#">About</a>
@@ -80,22 +80,25 @@
                             } 
                             else{
                                 echo "<img src='images/abyd9viyvwf71.png'>";
-                            } 
+                            }
+                            if (isset($_SESSION['username'])){
                             echo "<form action = 'ProductPage\ProductPageFunction.php' method='POST'>
                                 <input class='addCartButton' type='submit' name='AddToCart' value='Add to cart'>
                                 <input type='hidden' name='productID' value='".$productID."'> 
                                 <input type='hidden' name='productdate' value='".$productdate."'>
                                 <input type='hidden' name='productname' value='".$productname."'>  
-                            </form>
-                            </div>
+                            </form>";
+                            }
+                            echo "</div>
                             <div class='ProductDetail' id='ProductDetail'>
                                 ".$row['productsDetail']."  
                             </div>";
                             include('Ratings/Ratings.php');
-                            echo "<div class='productPrice' id='productPrice'> ".$row['productsPrice']."$
+                            echo "<div class='productPrice' id='productPrice'>".$row['productsPrice']."$
                             </div>";
                         }
                     }
+                    
                 ?>
                 <?php 
                 if (isset($_SESSION['username'])){

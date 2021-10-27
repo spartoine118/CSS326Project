@@ -1,4 +1,4 @@
-<?php include('C:\xampp\htdocs\CSS325Project\Project\dbh.php');
+<?php include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
         color:black;       
     }
     
-    input[type=password_1] {
+    input[type=password] {
         width: 100%;
         padding: 0 5px;
         height: 40px;
@@ -67,17 +67,6 @@
         
     }
 
-    input[type=password_2] {
-        width: 100%;
-        padding: 0 5px;
-        height: 40px;
-        font-size: 16px;
-        border: none;
-        background: none;
-        outline: none;
-        color:black;
-        
-    }
     .header{
         color:#404EED;
     }
@@ -139,7 +128,7 @@
 <body>
     <div class="center">
         <div class = "header">        
-            <h2>Register</h2>
+            <h2><?php if(isset($_POST['ModifyUser'])){echo "Change information";}else{echo "Register";}?></h2>
         </div> 
         <form action = "Login_SignUp\register_db.php" method='POST' enctype='multipart/form-data'>
 
@@ -162,11 +151,11 @@
 
             <div class = "input">
                 <label for = "password_1"></label>
-                <input type = "password_1" name="password_1" placeholder="Password">
+                <input type ="password" name="password_1" placeholder="Password">
             </div>
             <div class = "input">
                 <label for = "password_2"></label>
-                <input type = "password_2" name="password_2" placeholder="Confirm Password">
+                <input type ="password" name="password_2" placeholder="Confirm Password">
             </div>
 
             <?php if(isset($_POST['ModifyUser'])){
@@ -190,6 +179,7 @@
                     }
             ?>
             <p>Already a member? <a href = "login.php">Sign in</a></p>
+            <a href = "MainPage.php">Home page</a>
         </form>
     </div>
 </body>

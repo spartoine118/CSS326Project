@@ -90,7 +90,7 @@ input[type="text"] {
 </style>
 <body>
 
-<?php include_once 'C:\xampp\htdocs\CSS325Project\Project\Header.php'; ?>
+<?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
 
 
     <div class="productInputs">

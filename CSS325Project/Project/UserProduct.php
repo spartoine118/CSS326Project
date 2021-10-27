@@ -11,7 +11,7 @@
     <title>Searchpage</title>
 </head>
 <body>
-    <?php include_once 'C:\xampp\htdocs\CSS325Project\Project\Header.php'; ?>
+    <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
     <div class ="SearchBody" id="SearchBody">
     <div class="MenuSidebar" id="MenuSideBar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>

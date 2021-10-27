@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\CSS325Project\Project\dbh.php';
+require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 $GLOBALS['FilterArrayName'] = array();
 $GLOBALS['shownitems'] = array();
@@ -25,9 +25,9 @@ function filterfunction(){
 
 function getItems($conn){
     if(isset($_GET['ItemSearch'])){
-        if(($_GET['ItemSearch'] == null or $_GET['ItemSearch'] == "" or trim($_GET['ItemSearch']) == " ") && ($_POST['invisVar1'] == "" or trim($_POST['invisVar1']) == " ")){
-            header("location:MainPage.php");
-            exit();
+        if(($_GET['ItemSearch'] == null or $_GET['ItemSearch'] == "" or trim($_GET['ItemSearch']) == "")){
+            header("Location: http://localhost/CSS325Project/Project/MainPage.php");
+            exit(); 
         }
         else{
           $search = mysqli_real_escape_string($conn, $_GET['ItemSearch']);
@@ -137,13 +137,24 @@ function getTotalPage($conn){
             $pages = ceil($row['COUNT(*)']/20);
             echo 
             "<div class='pagecnt' id='pagecnt'>
-               <a href='SearchPage.php?page=1&ItemSearch=".$_GET['ItemSearch']."'><<</a>&emsp; <a href='SearchPage.php?page=".($_GET['page']-1)."&ItemSearch=".$_GET['ItemSearch']."'><</a>&emsp; ";
+               <a href='SearchPage.php?page=1&ItemSearch=".$_GET['ItemSearch']."'><<</a>&emsp; <a href='SearchPage.php?page=";
+               if($_GET['page']-1 == 0){
+                echo "1&ItemSearch=".$_GET['ItemSearch']."'><</a>&emsp; ";
+               }
+               else{
+                   echo "".($_GET['page']-1)."&ItemSearch=".$_GET['ItemSearch']."'><</a>&emsp; ";
+               }
             for ($x = $_GET['page']-2; $x <= 3+$_GET['page'] AND $x <= $pages; $x++) {
                 if($x>0){
                     echo "<a href='SearchPage.php?page=".$x."&ItemSearch=".$_GET['ItemSearch']."'>".$x."</a>&nbsp;";
                 }
-            } 
-            echo "&emsp;<a href='SearchPage.php?page=".($_GET['page']+1)."&ItemSearch=".$_GET['ItemSearch']."'>></a>&emsp; <a href='SearchPage.php?page=".$pages."&ItemSearch=".$_GET['ItemSearch']."'>>></a>&emsp; ";
-                }
+            }
+            if($_GET['page']+1 > $pages){
+                echo "&emsp;<a href='SearchPage.php?page=".($_GET['page'])."&ItemSearch=".$_GET['ItemSearch']."'>></a>&emsp; <a href='SearchPage.php?page=".$pages."&ItemSearch=".$_GET['ItemSearch']."'>>></a>&emsp; ";
+            }
+            else{
+                echo "&emsp;<a href='SearchPage.php?page=".($_GET['page']+1)."&ItemSearch=".$_GET['ItemSearch']."'>></a>&emsp; <a href='SearchPage.php?page=".$pages."&ItemSearch=".$_GET['ItemSearch']."'>>></a>&emsp; ";
+            }
             }   
     }
+}

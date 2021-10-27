@@ -1,5 +1,5 @@
 <?php
-    require_once 'C:\xampp\htdocs\CSS325Project\Project\dbh.php';
+    require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 function getCartItems($conn){
     $sql = "SELECT Productname, ProductID, COUNT(*) AS Amount FROM cart WHERE Username = '".$_SESSION['username']."' GROUP BY Productname;";

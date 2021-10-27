@@ -171,7 +171,7 @@ input[type="submit"] {
 </style>
 <body>
 
-    <?php include_once 'C:\xampp\htdocs\CSS325Project\Project\Header.php'; ?>
+    <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
     <div class="productInputs">
         <form action ="WriteMessagePage\WriteMessagePageFunction.php" method='POST' enctype='multipart/form-data'>
         <h1>Send Your message</h2>

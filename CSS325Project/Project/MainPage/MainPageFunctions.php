@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\CSS325Project\Project\dbh.php';
+require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 function getNewItems($conn){
     $sql = "SELECT * FROM products ORDER BY productsDate DESC;";

@@ -1,4 +1,4 @@
-<?php require_once 'C:\xampp\htdocs\CSS325Project\Project\dbh.php';?>
+<?php require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';?>
 
 <?php
 
@@ -150,7 +150,7 @@ h2,p{
 </style>
 
     <body>
-    <?php include_once 'C:\xampp\htdocs\CSS325Project\Project\Header.php'; ?>
+    <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
       <div class="center">  
         <div class = "Profile" id="Profile">
         
@@ -163,17 +163,23 @@ h2,p{
                                 $row = mysqli_fetch_assoc($result);
                                 $sql2 = "SELECT * FROM userimage WHERE userNAME = '".$_SESSION['username']."';";
                                 $result2 = mysqli_query($conn,$sql2);
-                                $row2 = mysqli_fetch_assoc($result2);?>
-
-                            <p> <strong><?php echo "<img src='Login_SignUp/Uploads/UserImage/".$row2['userID'].".".$row2['fileEXT']."' alt='UserPicture' width='128' height='128'></strong></p>" ?>
+                                $row2 = mysqli_fetch_assoc($result2);
+                                if($row2['status'] == 0){
+                                    echo "<p> <strong><img src='images/user_picture.png' width='128' height='128'></strong></p>";
+                                }
+                                else{
+                                    echo "<p> <strong><img src='Login_SignUp/Uploads/UserImage/".$row2['userID'].".".$row2['fileEXT']."' width='128' height='128'></strong></p>";
+                                }
+                                ?>
                             <p> Username:<strong><?php echo $_SESSION['username']; ?></strong></p>
                             <p> First name:<strong><?php echo $row['firstName']; ?></strong></p>
                             <p> Last name:<strong><?php echo  $row['lastName']; ?></strong></p>
                             <nav class="navMenu">
-                            <?php echo "
-                                <a href='UserPage.php?uname=".$_SESSION['username']."'>Profile</a>
-                                <a href='UserProduct.php?uname=".$_SESSION['username']."'>Product</a>
-                                ";?>
+                            <?php        
+                                    echo "
+                                    <a href='ProfilePage.php?'>Profile</a>
+                                    <a href='MyproductPage.php'>Product</a>
+                                    "; ?>
                                 <div class="dot"></div>
                             </nav>
                            

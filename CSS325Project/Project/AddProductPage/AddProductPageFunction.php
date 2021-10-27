@@ -1,6 +1,6 @@
 <?php
 
-include('C:\xampp\htdocs\CSS325Project\Project\dbh.php');
+include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
 
 function rename_win($oldfile,$newfile) {
     if (!rename($oldfile,$newfile)) {

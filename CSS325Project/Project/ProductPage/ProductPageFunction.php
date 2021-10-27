@@ -1,5 +1,5 @@
 <?php 
-require_once 'C:\xampp\htdocs\CSS325Project\Project\dbh.php';
+require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 if(isset($_POST['AddToCart'])){
     $sql = "INSERT INTO cart (Username, Productname, ProductID) VALUES ('".$_SESSION['username']."', '".$_POST['productname']."', '".$_POST['productID']."');";
@@ -8,7 +8,7 @@ if(isset($_POST['AddToCart'])){
 }
 
 function setComment($conn){
-    if(isset($_POST['commentSubmit'])){
+    if(isset($_POST['commentSubmit']) && trim($_POST['comment']) <> ""){
         $username = $_POST['username'];
         $productname = $_POST['productname'];
         $date = $_POST['date'];
@@ -29,7 +29,7 @@ function getComment($conn,$productname){
                 echo "<div class='comments' id='comments'>
                 ".$row['userName']."</br>".$row['date']."</br>".$row['comment']."</br>
                 </div>";
-                if($_SESSION['userPrivilege'] == 'Admin'){
+                if(isset($_SESSION['userPrivilege']) && $_SESSION['userPrivilege'] == 'Admin'){
                     echo "<form action = 'Admin\AdminFunctions.php' method='POST'>
                         <input class='deleteComment' type='submit' name='deleteComment' value='Remove this comment'>
                         <input type='hidden' name='commentID' value='".$row['cID']."'> 

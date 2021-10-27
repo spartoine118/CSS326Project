@@ -1,5 +1,5 @@
 <?php
-    require_once 'C:\xampp\htdocs\CSS325Project\Project\dbh.php';
+    require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';
 
 function getUserItems($conn){
     $sql = "SELECT * FROM products WHERE userName = '".$_GET['uname']."';";

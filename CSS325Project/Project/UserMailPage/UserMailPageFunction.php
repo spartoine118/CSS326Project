@@ -1,6 +1,6 @@
 <?php
 
-include('C:\xampp\htdocs\CSS325Project\Project\dbh.php');
+include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
 
 function getUserMail($conn){
     $sql = "SELECT * FROM messages WHERE msg_To = '".$_SESSION['username']."'";
@@ -17,12 +17,15 @@ function getUserMail($conn){
                             <input class='deleteItem' type='submit' name='deleteMail' value='Delete this Mail'>
                             <input type='hidden' name='messageID' value='".$row['mID']."'> 
                         </form> 
-                        <a href='Mail.php?uname=".$_SESSION['username']."&date=".$row['msg_date']."&mID=".$row['mID']."'>".$row['msg_subject']."</a>".$row['msg_From']."</br>".$row['msg_date']."</br>".substr($row['msg_body'],0,100)."...</br>
+                        <a href='M  ail.php?uname=".$_SESSION['username']."&date=".$row['msg_date']."&mID=".$row['mID']."'>".$row['msg_subject']."</a>".$row['msg_From']."</br>".$row['msg_date']."</br>".substr($row['msg_body'],0,100)."...</br>
                         </div>
                     </div>";  
                 } 
             }
         }
+    }
+    else{
+        echo "no message";
     }
 }
 
@@ -34,16 +37,16 @@ function getMail($conn){
         if($result != null){
             while($row = mysqli_fetch_assoc($result)){
                 echo "
-                <div class='commentDisplay' id='commentDisplay'>
-                    <div class='comments' id='comments'>
-                    <form action ='WriteMessage.php' method='POST'>
-                        <input class='deleteItem' type='submit' name='replyMail' value='Reply'>
-                        <input type='hidden' name='messageSender' value='".$row['msg_From']."'> 
-                        <input type='hidden' name='messageSubject' value='".$row['msg_subject']."'> 
-                    </form> 
-                    ".$row['msg_subject']."</br>".$row['msg_From']."</br>".$row['msg_date']."</br>".$row['msg_body']."  </br>
-                    </div>
-                </div>";   
+                    <div class='commentDisplay' id='commentDisplay'>
+                        <div class='comments' id='comments'>
+                        <form action ='WriteMessage.php' method='POST'>
+                            <input class='deleteItem' type='submit' name='replyMail' value='Reply'>
+                            <input type='hidden' name='messageSender' value='".$row['msg_From']."'> 
+                            <input type='hidden' name='messageSubject' value='".$row['msg_subject']."'> 
+                        </form> 
+                        ".$row['msg_subject']."</br>".$row['msg_From']."</br>".$row['msg_date']."</br>".$row['msg_body']."  </br>
+                        </div>
+                    </div>";   
             }
         }
     }

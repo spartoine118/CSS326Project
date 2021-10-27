@@ -88,7 +88,9 @@ a:visited {
     padding-top: 60px;
     -webkit-box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
     box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.37);
-    border-right: 0.0625rem solid #e0e0e0;
+    border-top-right-radius: 20px;
+    border-top: 0.0625rem solid #404EED;
+    border-right: 0.0625rem solid #404EED;
     color:#404EED;    
    
 }
@@ -149,9 +151,8 @@ a:visited {
         ?>            
         </div>
         <div class="MenuSidebar" id="MenuSideBar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">☰</a>    
-        <a href="MainPage.php">Home Page</a>
-
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">☰</a>
+        <a href="MainPage.php">Home Page</a>          
         <?php 
             if(isset($_SESSION['username'])){
                 echo "<a href='AddProductPage.php'> Add product</a>";
@@ -162,6 +163,6 @@ a:visited {
                 echo "<a href='UserMail.php'> Your inbox </a>";
                 echo "<a href='logout.php'> Logout </a>";
             }            
-        ?>            
+        ?>         
         </div>  
-    </div>
+    </div> 

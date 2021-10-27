@@ -1,4 +1,4 @@
-<?php include('C:\xampp\htdocs\CSS325Project\Project\dbh.php');
+<?php include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
 ?>
 
 
@@ -157,7 +157,7 @@
                     }
             ?>
             <p>Not yet a member? <a href = "register.php">Sign Up</a></p> 
-           
+            <a href = "MainPage.php">Home page</a>
         </form>
     </div>
 

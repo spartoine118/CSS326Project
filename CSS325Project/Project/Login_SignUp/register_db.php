@@ -1,5 +1,5 @@
 <?php 
-    include('C:\xampp\htdocs\CSS325Project\Project\dbh.php');
+    include('D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php');
     
     $_SESSION['error'] = array();
 
@@ -86,6 +86,7 @@
     }
 
     if(isset($_POST['ModifyUser2'])){
+        $header = "location: http://localhost/CSS325Project/Project/ProfilePage.php";
         $ogusername = $_SESSION['username'];
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
@@ -113,8 +114,7 @@
 
         if ($result) { // if user exists
             if ($result['username'] === $username and $username <> $ogusername) {
-                array_push($_SESSION['error'], "Username already exists");  
-                echo "Username already exists";           
+                array_push($_SESSION['error'], "Username already exists");           
             }            
         }
         if (count($_SESSION['error']) == 0) {
@@ -122,6 +122,12 @@
             $password = md5($password_1);
             $sql = "UPDATE users SET username = '".$username."',password = '".$password."',firstName = '".$firstname."', lastName = '".$lastname."' WHERE id = ".$_POST['uID'].";";
             mysqli_query($conn, $sql);
+            $sql4 = "UPDATE products SET userName = '".$username."' WHERE userName = '".$ogusername."' ;";
+            mysqli_query($conn, $sql4);
+            $sql5 = "UPDATE messages SET msg_From = '".$username."' WHERE msg_From = '".$ogusername."' ;";
+            mysqli_query($conn, $sql5);
+            $sql6 = "UPDATE messages SET msg_To = '".$username."' WHERE msg_To = '".$ogusername."' ;";
+            mysqli_query($conn, $sql6);
             $_SESSION['username'] = $username;
             if(isset($_FILES['userImage'])){
                 $file = $_FILES['userImage'];
@@ -170,7 +176,7 @@
                 }
                 else{
                     if(isset($_POST['userImage'])){
-                        $sql3 = "UPDATE userimage SET userName = '".$username."', status = '0' WHERE userID = ".$_POST['uID'].";";
+                        $sql3 = "UPDATE userimage SET userName = '".$username."', status = '1' WHERE userID = ".$_POST['uID'].";";
                         mysqli_query($conn, $sql3);
                         header($header);
                     }
@@ -183,6 +189,6 @@
         }
         }
         else {
-            header($header);
+            header("location: http://localhost/CSS325Project/Project/Register.php");
         }   
     }

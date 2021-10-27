@@ -1,4 +1,4 @@
-<?php require_once 'C:\xampp\htdocs\CSS325Project\Project\dbh.php';?>
+<?php require_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\dbh.php';?>
 
 
 
@@ -138,7 +138,7 @@ h2,p{
 </style>
 
     <body>
-    <?php include_once 'C:\xampp\htdocs\CSS325Project\Project\Header.php'; ?>
+    <?php include_once 'D:\WORK\XAMP\htdocs\CSS325Project\Project\Header.php'; ?>
         <div class = "Profile" id="Profile">
         
         <?php $sql = "SELECT * FROM users WHERE userNAME = '".$_GET['uname']."';";
@@ -150,21 +150,36 @@ h2,p{
             <h2>Profile</h2>    
                     <div class = "content">
                         <!--  user information -->
-                        <p> <strong><?php echo "<img src='Login_SignUp/Uploads/UserImage/".$row2['userID'].".".$row2['fileEXT']."' alt='UserPicture' width='128' height='128'></strong></p>" ?>
+                        <?php                                 if($row2['status'] == 0){
+                                    echo "<p> <strong><img src='images/user_picture.png' width='128' height='128'></strong></p>";
+                                }
+                                else{
+                                    echo "<p> <strong><img src='Login_SignUp/Uploads/UserImage/".$row2['userID'].".".$row2['fileEXT']."' width='128' height='128'></strong></p>";
+                                }
+                                ?>
                         <p> Username:<strong><?php echo $_GET['uname']; ?></strong></p>
                         <p> First name:<strong><?php echo $row['firstName']; ?></strong></p>
                         <p> Last name:<strong><?php echo  $row['lastName']; ?></strong></p>
                         
                         
                     </div><nav class="navMenu">
-            <?php echo "
-            <a href='UserPage.php?uname=".$_GET['uname']."'>Profile</a>
-            <a href='UserProduct.php?uname=".$_GET['uname']."'>Product</a>
-            "; 
+            <?php
+            if(isset($_SESSION['username']) && $_SESSION['username'] == $_GET['uname']){
+                echo "
+                <a href='ProfilePage.php?'>Profile</a>
+                <a href='MyproductPage.php'>Product</a>
+                "; 
+            }
+            else{
+                echo "
+                <a href='UserPage.php?uname=".$_GET['uname']."'>Profile</a>
+                <a href='UserProduct.php?uname=".$_GET['uname']."'>Product</a>
+                "; 
+            }
             ?>
             <div class="dot"></div>
         </nav>
          </div>
     </body>
     <script src="ProfilePage/ProfilePage.js"></script>
-</html>
+</html> 
